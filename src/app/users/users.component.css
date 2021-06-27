@@ -1,0 +1,19 @@
+/* UsersComponent's private CSS styles */
+
+.users {
+    width: 80em;
+}
+
+.add-button {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+a {
+    color: darkblue;
+    font-weight: 700;
+}
+
+nb-card {
+    margin: 0 auto 2rem;
+}

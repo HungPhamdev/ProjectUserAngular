@@ -1,0 +1,17 @@
+<nb-layout-column>
+    <nb-card status="primary" accent="success" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+        <nb-card-header>New User</nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="newUser">
+                <input id="id" style="display: none;" value="newUser.id.value" formControlName="id">
+                <label for="name">User name: </label><br><br>
+                <input id="name" type="text" shape="round" status="primary" nbInput fullWidth formControlName="name" /><br><br>
+                <label for="phone">Phone: </label><br><br>
+                <input id="phone" type="text" shape="round" status="primary" nbInput fullWidth formControlName="phone" /><br><br>
+                <label for="email">Email: </label><br><br>
+                <input id="email" type="text" shape="round" status="primary" nbInput fullWidth formControlName="email" /><br><br>
+                <button class="add-button" nbButton outline shape="semi-round" [status]="newUser.invalid?'danger':'primary'" [disabled]="!newUser.valid" (click)="add(newUser.value);"><nb-icon icon="plus-square-outline"></nb-icon>Add User</button>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</nb-layout-column>

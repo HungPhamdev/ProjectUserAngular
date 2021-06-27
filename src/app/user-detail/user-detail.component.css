@@ -1,0 +1,25 @@
+/* UserDetailComponent's private CSS styles */
+
+h1 {
+    color: lawngreen;
+    font-weight: bold;
+}
+
+label {
+    color: green;
+    font-weight: bold;
+}
+
+input {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    padding: .5rem;
+}
+
+button {
+    margin-top: 20px;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-left: 20px;
+}

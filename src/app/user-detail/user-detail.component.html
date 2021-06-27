@@ -1,0 +1,23 @@
+<nb-layout-column>
+    <nb-card status="primary" accent="info" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large">
+        <nb-card-header>
+            <h1>User Details</h1>
+        </nb-card-header>
+        <nb-card-body>
+            <div *ngIf="user">
+                <div>
+                    <label for="id">Id: </label>
+                    <input value="{{user.id}}" nbInput fullWidth status="primary" readonly>
+                    <label for="user-name">User name: </label>
+                    <input id="user-name" nbInput fullWidth status="primary" [(ngModel)]="user.name" placeholder="User name">
+                    <label for="phone">Phone: </label>
+                    <input id="phone" nbInput fullWidth status="primary" [(ngModel)]="user.phone" placeholder="Phone number">
+                    <label for="email">Email: </label>
+                    <input id="email" nbInput fullWidth status="primary" [(ngModel)]="user.email" placeholder="Email">
+                </div>
+                <button nbButton status="info" (click)="goBack()">Back</button>
+                <button nbButton hero status="success" (click)="save()"><nb-icon icon="save-outline"></nb-icon>Save</button>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</nb-layout-column>

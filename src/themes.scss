@@ -1,0 +1,25 @@
+// import Nebular Theme System and the default theme
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+@import 'themes';
+// framework component styles
+@import '~@nebular/theme/styles/globals';
+// install the framework styles
+@include nb-install() {
+    @include nb-theme-global();
+}
+
+;
+$nb-themes: nb-register-theme(( color-primary-100: #faf7ff, // <- new primary color
+color-primary-200: #ece3ff, color-primary-300: #d5bfff, color-primary-400: #b18aff, color-primary-500: #a16eff, color-primary-600: #7b51db, color-primary-700: #5a37b8, color-primary-800: #3e2494, color-primary-900: #29157a, text-basic-color: color-basic-800, text-disabled-color: color-basic-600, ), default, default);
+$theme: ( // ...
+color-danger-100: #fff2f2, color-danger-200: #ffd6d9, color-danger-300: #ffa8b4, color-danger-400: #ff708d, // ...
+color-danger-900: #700940,
+/* Basic colors - for backgrounds and borders and texts */
+
+color-basic-100: white, color-basic-200: #f7f8fa, color-basic-300: #edf0f4, color-basic-400: #dde1eb, // ...
+color-basic-1100: #131729,
+/* Status colors states - focus, hover, default, active, disabled  */
+
+color-primary-focus: color-primary-700, color-primary-hover: color-primary-400, color-primary-default: color-primary-500, color-primary-active: color-primary-600, color-primary-disabled: color-primary-300, // ...
+);

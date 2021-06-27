@@ -1,0 +1,9 @@
+/* AppComponent's private CSS styles */
+
+h1 {
+    margin-bottom: 0;
+}
+
+nb-list-item {
+    cursor: pointer;
+}

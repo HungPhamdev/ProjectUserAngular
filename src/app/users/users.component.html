@@ -1,0 +1,13 @@
+<nb-layout-column>
+    <app-user-search></app-user-search>
+    <a nbButton status="info" class="add-button" routerLink="/user-add">
+        <nb-icon icon="plus-square-outline"></nb-icon> Add User</a>
+    <nb-card size="medium">
+        <nb-list>
+            <nb-list-item *ngFor="let user of users">
+                <a class="users" style="text-decoration: none;" routerLink="/detail/{{user.id}}">{{user.name}}</a>
+                <button class="delete" shape="semi-round" nbButton status="danger" (click)="delete(user)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+            </nb-list-item>
+        </nb-list>
+    </nb-card>
+</nb-layout-column>

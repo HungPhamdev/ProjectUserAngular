@@ -1,0 +1,11 @@
+<div>
+    <label for="search-box" style="font-weight: 700;">User Search</label>
+    <!-- <nb-search type="rotate-layout"></nb-search> -->
+    <input #searchBox nbInput fullWidth status="primary" id="search-box" placeholder="Search..." (input)="search(searchBox.value)">
+    <nb-list>
+        <nb-list-item *ngFor="let user of users$ | async">
+            <a class="name" style="text-decoration: none;" routerLink="/detail/{{user.id}}">{{user.name}}</a>
+            <button class="delete" nbButton status="danger" (click)="delete(user)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+        </nb-list-item>
+    </nb-list>
+</div>

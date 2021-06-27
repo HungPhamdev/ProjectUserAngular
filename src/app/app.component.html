@@ -1,0 +1,16 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <nb-icon icon="folder-outline"></nb-icon>User Project</nb-layout-header>
+    <nb-sidebar>
+        <nb-list>
+            <nb-list-item routerLink="/users">
+                <nb-icon icon="menu-outline"></nb-icon>Users</nb-list-item>
+            <nb-list-item routerLink="/user-add">
+                <nb-icon icon="person-add"></nb-icon>Add New User</nb-list-item>
+        </nb-list>
+    </nb-sidebar>
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+        <!-- router-outlet sẽ giúp chỉ định rõ phần thay đổi và kiểm soát nội dung trong trang tốt hơn -->
+    </nb-layout-column>
+</nb-layout>
