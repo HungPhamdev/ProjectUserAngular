@@ -25,13 +25,10 @@ export class UserAddComponent implements OnInit {
   add(user: User): void{
     if(!user.name.trim()&&!user.phone.trim()&&!user.email.trim()){return; }
     user.id = Math.round(Math.random()*100);
-    this.userService.addUser(user)
-    .subscribe(user=>{this.users.push(user)
-    });
+    this.userService.addUser(user);
     this.loading = true;
     setTimeout(() => this.loading = false, 2000);
     setTimeout(function a(){ alert("Thêm thành công!");}, 3000);
-
   }
 
 }

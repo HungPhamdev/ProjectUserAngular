@@ -11,7 +11,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: User[]=[];
+  users:any;
   newUser = this.fb.group({
     id: [],
     name: ['', Validators.required],
@@ -21,24 +21,22 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService, private fb: FormBuilder) { }
 
   getUsers(): void{
-    this.userService.getUsers().subscribe(users=>this.users=users);
+    this.userService.getUser();
   }
 
   ngOnInit(): void {
+    this.users=this.userService.getUser();
     this.getUsers();
   }
 
   add(user: User): void{
     if(!user.name.trim()&&!user.phone.trim()&&!user.email.trim()){return; }
     user.id = Math.round(Math.random()*100);
-    this.userService.addUser(user)
-    .subscribe(user=>{this.users.push(user)
-    });
+    this.userService.addUser(user);
   }
 
-  delete(user: User): void{
-    this.users=this.users.filter(u=>u!==user);
-    this.userService.deleteUser(user.id).subscribe();
+  delete(index: number): void{
+    this.userService.deleteUser(index);
   }
 
 }

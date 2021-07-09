@@ -1,97 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { User } from './users/user';
-import { MessageService } from './message.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+  user: User | undefined;
+  users: Array<User> = ([
+    {id:1,name:"Phạm Lý Hùng",phone:"0328858916", email:"lyhung102@gmail.com"},
+    {id:2,name:"Nguyễn Viết Văn",phone:"0513532854", email:"vietvan@gmail.com"},
+    {id:3,name:"Võ Hoàng Thanh",phone:"0975421589", email:"thanhvt@gmail.com"},
+    {id:4,name:"Lý Thị A",phone:"0856565333", email:"lythi102@gmail.com"},
+    {id:5,name:"Trần Yến B",phone:"0932777646", email:"tranyen102@gmail.com"},
+    {id:5,name:"Hoàng Thị C",phone:"0268005888", email:"hoangthi@gmail.com"},
+    {id:6,name:"Nguyễn Văn D",phone:"0808006440", email:"nguyenvan@gmail.com"},
+    {id:7,name:"Hứa Mỹ E",phone:"0973112995", email:"huamy@gmail.com"},
+    {id:8,name:"Phạm Văn G",phone:"0322251467", email:"phamvan@gmail.com"},
+    {id:9,name:"Lê Thị I",phone:"0123458916", email:"lethi@gmail.com"},
+    {id:10,name:"Đinh Văn P",phone:"0868858916", email:"dinhvan@gmail.com"}
+  ])
 
-  private userUrl = 'api/users'; //URL to web api
+  constructor() { }
 
-  private handleError<T>(operation = 'operation', result?: T){
-    return (error: any): Observable<T> => { // any là 1 kiểu dữ liệu có thể gán mọi kiểu dữ liệu
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
+  getUser() {
+    return this.users;
+  }
+
+  addUser(user: User){
+   this.users.push(user);
+  }
+
+  updateUser(user: User){
+     for(let i=0; this.users.length;i++){
+        this.users[i] = user;
+        break;
     }
   }
 
-  getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(this.userUrl)
-    .pipe(
-      tap(_ => this.log('fetched users')),
-      catchError(this.handleError<User[]>('getUsers', []))
-    );
-  }
-
-  getUserNo404<Data>(id: number): Observable<User>{
-    const url=`${this.userUrl}/?id=${id}`;
-    return this.http.get<User[]>(url).pipe(
-      map(users => users[0]),
-      tap(u => {
-        const outcome = u ? `fetched` : `did not find`;
-        this.log(`${outcome} user id=${id}`);
-      }),
-      catchError(this.handleError<User>(`getUser id=${id}`))
-    );
-  }
-
-  getUser(id: number): Observable<User>{
-    const url = `${this.userUrl}/${id}`;
-    return this.http.get<User>(url).pipe(
-      tap(_ => this.log(`fetched user id=${id}`)),
-      catchError(this.handleError<User>(`getUser id=${id}`))
-    );
-  }
-
-  private log(message: string){
-    this.messageService.add(`UserService: ${message}`);
-  }
-
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
-
-  addUser(user: User): Observable<User>{
-    return this.http.post<User>(this.userUrl, user, this.httpOptions).pipe(
-      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
-      catchError(this.handleError<User>('user-add'))
-    );
-  }
-
-  updateUser(user: User): Observable<any>{
-    return this.http.put<User>(this.userUrl, user, this.httpOptions).pipe(
-      tap(_ => this.log(`update user id=${user.id}`)),
-      catchError(this.handleError<any>('update User'))
-    );
-  }
-
-  deleteUser(id: number):  Observable<User>{
-    const url = `${this.userUrl}/${id}`;
-
-    return this.http.delete<User>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted User id=${id}`)),
-      catchError(this.handleError<User>('deleteUser'))
-    );
-  }
-
-  searchUsers(term: string): Observable<User[]>{
-    if(!term.trim()){
-      return of([]);
+  deleteUser(index: number){
+    if(index!==-1){
+      this.users.splice(index, 1);
     }
-    return this.http.get<User[]>(`${this.userUrl}/?name=${term}`).pipe(
-      tap(x=>x.length?
-        this.log(`found users matching "${term}"`) :
-        this.log(`no users matching "${term}"`)),
-      catchError(this.handleError<User[]>('searchUsers', []))
-    );
   }
 
 }
